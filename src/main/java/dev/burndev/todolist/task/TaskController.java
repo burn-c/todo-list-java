@@ -70,7 +70,7 @@ public class TaskController {
     }
 
     Utils.copyNonNullProperty(taskModel, task);
-
+    
     var taskUpdated = this.taskRepository.save(task);
 
     return ResponseEntity.status(HttpStatus.OK).body(taskUpdated);
