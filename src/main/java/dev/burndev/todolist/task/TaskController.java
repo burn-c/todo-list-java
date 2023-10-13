@@ -31,16 +31,16 @@ public class TaskController {
     taskModel.setIdUser((UUID) idUser);
 
     var currentDate = LocalDateTime.now();
-    if (currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt()) ) {
+    if (currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt())) {
       return ResponseEntity
-      .status(HttpStatus.BAD_REQUEST)
-      .body("A data de início e data de término deve ser maior do que a data atual.");
+          .status(HttpStatus.BAD_REQUEST)
+          .body("A data de início e data de término deve ser maior do que a data atual.");
     }
 
-    if (taskModel.getStartAt().isAfter(taskModel.getEndAt()) ) {
+    if (taskModel.getStartAt().isAfter(taskModel.getEndAt())) {
       return ResponseEntity
-      .status(HttpStatus.BAD_REQUEST)
-      .body("A data de início deve ser menor do que a data de término.");
+          .status(HttpStatus.BAD_REQUEST)
+          .body("A data de início deve ser menor do que a data de término.");
     }
 
     var task = this.taskRepository.save(taskModel);
@@ -70,7 +70,7 @@ public class TaskController {
     }
 
     Utils.copyNonNullProperty(taskModel, task);
-    
+
     var taskUpdated = this.taskRepository.save(task);
 
     return ResponseEntity.status(HttpStatus.OK).body(taskUpdated);
